@@ -115,13 +115,13 @@ export default function LocationPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
           <div style={{ borderRadius: "8px", overflow: "hidden", border: "1px solid var(--border)", height: "420px" }}>
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30000!2d15.15!3d44.23!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4761e5c57bca70c7%3A0x2e4d0e93069a9f3c!2sNin%2C%20Croatia!5e0!3m2!1sen!2ssi!4v1"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=15.04%2C44.18%2C15.26%2C44.32&layer=mapnik&marker=44.24%2C15.18"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
+              title="Kiteboarding lokacija Zadar-Nin-Ljubač"
             />
           </div>
         </div>
