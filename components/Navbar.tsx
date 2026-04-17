@@ -43,13 +43,14 @@ export default function Navbar() {
       <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", height: "72px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
 
         {/* Logo */}
-        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
+        <Link href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
           <Image
             src="https://www.kitesola-north.si/wp-content/uploads/2022/07/kitesola_north.png"
-            alt="Kite Šola North"
-            width={120}
-            height={36}
-            style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+            alt="Kite Šola North — Kitesurf Šola"
+            width={148}
+            height={44}
+            style={{ objectFit: "contain", filter: "brightness(0) invert(1)", height: "44px", width: "auto" }}
+            priority
           />
         </Link>
 
