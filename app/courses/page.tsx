@@ -145,11 +145,38 @@ export default function CoursesPage() {
                     Najpopularnejši
                   </div>
                 )}
-                {/* Price overlay */}
-                <div style={{ position: "absolute", bottom: 0, left: 0, right: 0, background: "linear-gradient(transparent, rgba(11,32,53,0.85))", padding: "40px 28px 28px" }}>
-                  <div className="stat-number" style={{ fontSize: "3rem", color: "#fff" }}>{course.price}</div>
-                  {course.priceNote && <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "1rem" }}>{course.priceNote}</span>}
-                  <div style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: "rgba(255,255,255,0.5)", marginTop: "4px" }}>{course.duration}</div>
+                {/* Price + duration badge */}
+                <div style={{
+                  position: "absolute", bottom: "20px", left: "20px",
+                  display: "flex", alignItems: "center", gap: "0",
+                  borderRadius: "6px", overflow: "hidden",
+                  boxShadow: "0 4px 20px rgba(0,0,0,0.35)",
+                }}>
+                  {/* Price chip — gold */}
+                  <div style={{
+                    background: "#C8922A",
+                    padding: "10px 18px",
+                    display: "flex", alignItems: "baseline", gap: "3px",
+                  }}>
+                    <span style={{ fontFamily: "var(--font-sora)", fontWeight: 800, fontSize: "1.5rem", color: "#fff", letterSpacing: "-0.02em", lineHeight: 1 }}>
+                      {course.price}
+                    </span>
+                    {course.priceNote && (
+                      <span style={{ fontFamily: "var(--font-inter)", fontWeight: 500, fontSize: "0.8125rem", color: "rgba(255,255,255,0.8)" }}>
+                        {course.priceNote}
+                      </span>
+                    )}
+                  </div>
+                  {/* Duration chip — dark */}
+                  <div style={{
+                    background: "rgba(11,32,53,0.92)",
+                    padding: "10px 16px",
+                    borderLeft: "1px solid rgba(255,255,255,0.12)",
+                  }}>
+                    <span style={{ fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "0.875rem", color: "rgba(255,255,255,0.85)", letterSpacing: "0.01em", whiteSpace: "nowrap" }}>
+                      {course.duration}
+                    </span>
+                  </div>
                 </div>
               </div>
 
