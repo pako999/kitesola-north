@@ -1,99 +1,113 @@
-import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
+import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Lokacija Zadar-Nin-Ljubač | Kite Šola North",
-  description: "Kiteboarding v Zadar-Nin-Ljubač, Hrvaška. Plitva voda, 3 lokacije, 4h od Ljubljane. Maestral, Burja in Tramontana.",
+  description: "Kiteboarding v Zadar-Nin-Ljubač, Hrvaška. 3 lokacije, plitva voda, Maestral in Burja. 4h od Ljubljane.",
 };
 
 const spots = [
   {
+    no: "01",
     name: "Ljubač",
     tag: "Glavna lokacija",
     wind: "Maestral (JZ)",
-    depth: "Koleni globoko",
-    desc: "Naša primarna lokacija z ogromnim plitkim zalivom — idealna za vse nivoje. Peščeno dno, čista voda, parkiranje tik ob plaži.",
-    highlight: true,
+    depth: "Do kolena",
+    desc: "Naša primarna lokacija — ogromen plitki zaliv s peščenim dnom. Idealna za vse nivoje, parkiranje tik ob vodi.",
+    primary: true,
   },
   {
+    no: "02",
     name: "Nin",
-    tag: "Historično mesto",
+    tag: "Laguna",
     wind: "Tramontana (S)",
-    depth: "Pas globoko",
-    desc: "Laguna blizu Ninskega zaliva, idealna za severnik. Možen ogled zgodovinskega mesta Nin po tečaju.",
-    highlight: false,
+    depth: "Do pasu",
+    desc: "Čudovita laguna ob zgodovinskem mestu Nin. Idealna za severni veter, zavetišče za vmesne kiteboarderje.",
+    primary: false,
   },
   {
+    no: "03",
     name: "Zadar okolica",
-    tag: "Tretja lokacija",
+    tag: "Rezervna lokacija",
     wind: "Burja (SV)",
-    depth: "Pasu do prsi",
-    desc: "Rezervna lokacija za dneve z močno burjo. Dobro zavetišče za vmesne in napredne kiteboarderje.",
-    highlight: false,
+    depth: "Do prsi",
+    desc: "Rezervna lokacija za dneve z burjo. Zavetišče za izkušene kiteboarderje z boljšo kontrolo zmaja.",
+    primary: false,
   },
 ];
 
 const winds = [
-  {
-    name: "Maestral",
-    direction: "Jugozahodnik",
-    months: "Junij – September",
-    speed: "12–22 vozlov",
-    desc: "Termalski veter, ki se razvije vsak popdan. Zanesljiv in predvidljiv — idealen za učenje.",
-    color: "text-cyan-400",
-    dot: "bg-cyan-400",
-  },
-  {
-    name: "Burja",
-    direction: "Severovzhodnik",
-    months: "Celotno leto",
-    speed: "15–35 vozlov",
-    desc: "Sunkovit veter z gore. Primeren za izkušene kiteboarderje. Pogosto poleti blag.",
-    color: "text-blue-400",
-    dot: "bg-blue-400",
-  },
-  {
-    name: "Tramontana",
-    direction: "Severnik",
-    months: "Oktober – Maj",
-    speed: "10–20 vozlov",
-    desc: "Hladen, enakomeren severnik. Primeren za vse nivoje, ko pihlja zmerno.",
-    color: "text-indigo-400",
-    dot: "bg-indigo-400",
-  },
+  { name: "Maestral", dir: "Jugozahodnik", months: "Junij – September", speed: "12–22 vozlov", desc: "Termalski veter, ki se razvije vsak popdan. Zanesljiv, predvidljiv — idealen za učenje vseh nivojev.", bar: "80%" },
+  { name: "Burja", dir: "Severovzhodnik", months: "Celotno leto", speed: "15–35 vozlov", desc: "Sunkovit veter z gore. Primeren za izkušene kiteboarderje. Poleti pogosto manj intenziven.", bar: "55%" },
+  { name: "Tramontana", dir: "Severnik", months: "Oktober – Maj", speed: "10–20 vozlov", desc: "Enakomeren, hladen severnik. Primeren za vse nivoje pri zmernih hitrostih.", bar: "40%" },
 ];
 
 const howToGet = [
-  { from: "Ljubljana", time: "~4 ure", via: "A1, nato A6 do Rupe, nato obmorska" },
-  { from: "Maribor", time: "~4 ure", via: "A1, nato skozi Slovenijo do Hrvaške" },
-  { from: "Koper", time: "~3 ure", via: "Obmorska cesta do Zadra" },
-  { from: "Zagreb", time: "~2 uri", via: "A1 avtocesta do Zadra" },
+  { from: "Ljubljana", time: "~4 ure", note: "A1 do Rupe, nato jadransko" },
+  { from: "Maribor", time: "~4 ure", note: "A1 skozi Slovenijo do Hrvaške" },
+  { from: "Koper", time: "~3 ure", note: "Obmorska cesta do Zadra" },
+  { from: "Zagreb", time: "~2 uri", note: "A1 avtocesta direktno do Zadra" },
 ];
 
 export default function LocationPage() {
   return (
     <>
       {/* HERO */}
-      <section className="pt-40 pb-20 bg-gradient-to-b from-[#080F1E] to-[#060E1A]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3">
-            Lokacija
-          </p>
-          <h1 className="text-5xl md:text-6xl font-sora font-bold text-white mb-6">
-            Zadar-Nin-Ljubač,{" "}
-            <span className="gradient-text">Hrvaška</span>
+      <section style={{ position: "relative", height: "60vh", minHeight: "420px", display: "flex", alignItems: "flex-end" }}>
+        <Image
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=85"
+          alt="Plaža Zadar-Nin"
+          fill
+          priority
+          sizes="100vw"
+          style={{ objectFit: "cover", objectPosition: "center 60%" }}
+        />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(11,32,53,0.15), rgba(11,32,53,0.8))" }} />
+        <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 24px 60px", width: "100%" }}>
+          <p className="label" style={{ marginBottom: "12px" }}>Lokacija</p>
+          <h1 className="display" style={{ fontSize: "clamp(2.5rem, 6vw, 4.5rem)", color: "#fff" }}>
+            Zadar-Nin-Ljubač,<br />Hrvaška.
           </h1>
-          <p className="text-white/60 text-xl max-w-2xl mx-auto leading-relaxed">
-            Jadransko morje na dosegu roke — 3 izjemne kiteboarding lokacije v radiju 10 km,
-            15 km od centra Zadra.
-          </p>
+        </div>
+      </section>
+
+      {/* INTRO */}
+      <section style={{ background: "var(--cream)", padding: "80px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px", alignItems: "start" }} className="split-grid">
+          <div>
+            <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "var(--ocean)", marginBottom: "24px" }}>
+              Tri lokacije, en inštruktor, brezhibni pogoji.
+            </h2>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "1.0625rem", color: "var(--muted)", lineHeight: 1.75, marginBottom: "20px" }}>
+              Zadar-Nin-Ljubač je eden redkih krajev na Jadranu, kjer v sezoni pihata tako Maestral kot Burja.
+              To pomeni, da skoraj ni dneva brez kite pogojev.
+            </p>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "1.0625rem", color: "var(--muted)", lineHeight: 1.75 }}>
+              Plitva, prozorna voda sega v večini spotov do kolena ali pasu.
+              Peščeno dno, brez skal, parkiranje tik ob plaži — idealni pogoji za učenje.
+            </p>
+          </div>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2px", background: "var(--border)" }}>
+            {[
+              { value: "3", label: "Lokacije" },
+              { value: "10 km", label: "Skupni radij" },
+              { value: "15 km", label: "Od centra Zadra" },
+              { value: "4h", label: "Od Ljubljane" },
+            ].map((s) => (
+              <div key={s.label} style={{ background: "#fff", padding: "36px 28px", textAlign: "center" }}>
+                <div className="stat-number" style={{ fontSize: "2.5rem", color: "var(--ocean)" }}>{s.value}</div>
+                <div style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: "var(--muted)", marginTop: "6px", letterSpacing: "0.02em" }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* MAP */}
-      <section className="py-8 bg-[#060E1A]">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="rounded-3xl overflow-hidden border border-white/10 h-96">
+      <section style={{ background: "var(--sand)" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px" }}>
+          <div style={{ borderRadius: "8px", overflow: "hidden", border: "1px solid var(--border)", height: "420px" }}>
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d30000!2d15.15!3d44.23!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4761e5c57bca70c7%3A0x2e4d0e93069a9f3c!2sNin%2C%20Croatia!5e0!3m2!1sen!2ssi!4v1"
               width="100%"
@@ -108,89 +122,42 @@ export default function LocationPage() {
       </section>
 
       {/* SPOTS */}
-      <section className="py-24 bg-[#060E1A]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3">
-              Naše lokacije
-            </p>
-            <h2 className="text-4xl font-sora font-bold text-white">
-              3 odlični spoti
-            </h2>
-            <p className="text-white/50 mt-4 max-w-xl mx-auto">
-              Lokacijo izbiramo glede na napoved vetra — vedno iščemo najboljše pogoje za teboj.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {spots.map((spot) => (
+      <section style={{ background: "var(--sand)", padding: "80px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p className="label" style={{ marginBottom: "12px" }}>Naši spoti</p>
+          <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "var(--ocean)", marginBottom: "48px" }}>
+            Tri lokacije, vedno perfektni pogoji.
+          </h2>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "24px" }} className="courses-grid">
+            {spots.map((s) => (
               <div
-                key={spot.name}
-                className={`glass-card rounded-2xl p-8 flex flex-col ${
-                  spot.highlight ? "border-cyan-500/40" : "border-white/10"
-                }`}
+                key={s.name}
+                style={{ background: s.primary ? "var(--ocean)" : "#fff", border: "1px solid var(--border)", borderRadius: "8px", padding: "40px 36px", position: "relative" }}
               >
-                {spot.highlight && (
-                  <span className="inline-block mb-4 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold border border-cyan-500/30 self-start">
-                    ★ {spot.tag}
+                <span style={{ fontFamily: "var(--font-sora)", fontWeight: 800, fontSize: "0.75rem", color: s.primary ? "#C8922A" : "var(--muted)", letterSpacing: "0.1em" }}>
+                  {s.no}
+                </span>
+                {s.primary && (
+                  <span style={{ marginLeft: "12px", fontFamily: "var(--font-inter)", fontSize: "0.6875rem", fontWeight: 600, background: "#C8922A", color: "#fff", padding: "3px 10px", borderRadius: "2px", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+                    Glavna
                   </span>
                 )}
-                {!spot.highlight && (
-                  <span className="inline-block mb-4 text-white/40 text-xs font-medium self-start">
-                    {spot.tag}
-                  </span>
-                )}
-                <h3 className="font-sora font-bold text-white text-2xl mb-3">{spot.name}</h3>
-                <p className="text-white/60 text-sm leading-relaxed mb-6 flex-1">{spot.desc}</p>
-                <div className="space-y-2 pt-4 border-t border-white/10">
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-white/40">Veter</span>
-                    <span className="text-cyan-400 font-medium">{spot.wind}</span>
-                  </div>
-                  <div className="flex items-center justify-between text-sm">
-                    <span className="text-white/40">Globina</span>
-                    <span className="text-white/70">{spot.depth}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* WIND CONDITIONS */}
-      <section className="py-24 bg-gradient-to-b from-[#060E1A] to-[#080F1E]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3">
-              Vetrovi
-            </p>
-            <h2 className="text-4xl font-sora font-bold text-white">
-              Vetrovi Jadranskega morja
-            </h2>
-            <p className="text-white/50 mt-4 max-w-xl mx-auto">
-              Zadar-Nin-Ljubač je eden redkih krajev, kjer pihajo vsi trije glavni jadranski vetrovi.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {winds.map((wind) => (
-              <div key={wind.name} className="glass-card rounded-2xl p-8">
-                <div className={`w-3 h-3 rounded-full ${wind.dot} mb-6`} />
-                <h3 className={`font-sora font-bold text-2xl mb-1 ${wind.color}`}>
-                  {wind.name}
+                <h3 style={{ fontFamily: "var(--font-sora)", fontWeight: 800, fontSize: "1.75rem", color: s.primary ? "#fff" : "var(--ocean)", marginTop: "16px", marginBottom: "8px", letterSpacing: "-0.02em" }}>
+                  {s.name}
                 </h3>
-                <p className="text-white/40 text-sm mb-4">{wind.direction}</p>
-                <p className="text-white/60 text-sm leading-relaxed mb-6">{wind.desc}</p>
-                <div className="space-y-2 pt-4 border-t border-white/10">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/40">Hitrost</span>
-                    <span className="text-white/70">{wind.speed}</span>
-                  </div>
-                  <div className="flex justify-between text-sm">
-                    <span className="text-white/40">Sezona</span>
-                    <span className="text-white/70">{wind.months}</span>
-                  </div>
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.9375rem", color: s.primary ? "rgba(255,255,255,0.6)" : "var(--muted)", lineHeight: 1.7, marginBottom: "28px" }}>
+                  {s.desc}
+                </p>
+                <div style={{ borderTop: `1px solid ${s.primary ? "rgba(255,255,255,0.12)" : "var(--border)"}`, paddingTop: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
+                  {[
+                    { k: "Veter", v: s.wind },
+                    { k: "Globina vode", v: s.depth },
+                  ].map((row) => (
+                    <div key={row.k} style={{ display: "flex", justifyContent: "space-between" }}>
+                      <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: s.primary ? "rgba(255,255,255,0.35)" : "var(--muted)" }}>{row.k}</span>
+                      <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", fontWeight: 600, color: s.primary ? "#C8922A" : "var(--ocean)" }}>{row.v}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             ))}
@@ -198,73 +165,102 @@ export default function LocationPage() {
         </div>
       </section>
 
-      {/* HOW TO GET THERE */}
-      <section className="py-24 bg-[#080F1E]">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3">
-              Kako priti
-            </p>
-            <h2 className="text-4xl font-sora font-bold text-white">
-              Dostopnost
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
-            {howToGet.map((route) => (
-              <div key={route.from} className="glass-card rounded-2xl p-6 flex items-start gap-4">
-                <div className="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400 shrink-0">
-                  🚗
+      {/* WIND */}
+      <section style={{ background: "var(--ocean)", padding: "100px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+          <p className="label" style={{ marginBottom: "12px" }}>Vetrovi</p>
+          <h2 className="display" style={{ fontSize: "clamp(1.75rem, 3vw, 2.5rem)", color: "#fff", marginBottom: "56px" }}>
+            Jadranski vetrovi
+          </h2>
+          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            {winds.map((w) => (
+              <div key={w.name} style={{ background: "rgba(255,255,255,0.04)", borderRadius: "4px", padding: "36px 40px", display: "grid", gridTemplateColumns: "200px 1fr 160px", gap: "32px", alignItems: "center" }} className="wind-row">
+                <div>
+                  <div style={{ fontFamily: "var(--font-sora)", fontWeight: 800, fontSize: "1.5rem", color: "#C8922A", letterSpacing: "-0.02em" }}>{w.name}</div>
+                  <div style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: "rgba(255,255,255,0.35)", marginTop: "4px" }}>{w.dir}</div>
                 </div>
                 <div>
-                  <div className="flex items-baseline gap-3 mb-1">
-                    <span className="font-sora font-semibold text-white">{route.from}</span>
-                    <span className="text-cyan-400 font-bold">{route.time}</span>
+                  <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.9375rem", color: "rgba(255,255,255,0.55)", lineHeight: 1.65, marginBottom: "12px" }}>{w.desc}</p>
+                  {/* Wind bar */}
+                  <div style={{ height: "3px", background: "rgba(255,255,255,0.1)", borderRadius: "2px" }}>
+                    <div style={{ height: "100%", width: w.bar, background: "#C8922A", borderRadius: "2px" }} />
                   </div>
-                  <p className="text-white/40 text-sm">{route.via}</p>
+                </div>
+                <div style={{ textAlign: "right" }}>
+                  <div style={{ fontFamily: "var(--font-sora)", fontWeight: 700, fontSize: "1.125rem", color: "#fff" }}>{w.speed}</div>
+                  <div style={{ fontFamily: "var(--font-inter)", fontSize: "0.75rem", color: "rgba(255,255,255,0.35)", marginTop: "4px" }}>{w.months}</div>
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* HOW TO GET + ACCOMMODATION */}
+      <section style={{ background: "var(--cream)", padding: "100px 24px" }}>
+        <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: "64px" }} className="split-grid">
+          {/* Driving times */}
+          <div>
+            <p className="label" style={{ marginBottom: "12px" }}>Dostopnost</p>
+            <h2 className="display" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", color: "var(--ocean)", marginBottom: "40px" }}>
+              Kako priti
+            </h2>
+            <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+              {howToGet.map((r, i) => (
+                <div
+                  key={r.from}
+                  style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: i === 0 ? "8px 8px 0 0" : i === howToGet.length - 1 ? "0 0 8px 8px" : "0", padding: "20px 24px", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "16px" }}
+                >
+                  <div>
+                    <div style={{ fontFamily: "var(--font-sora)", fontWeight: 700, fontSize: "1.0625rem", color: "var(--ocean)" }}>{r.from}</div>
+                    <div style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: "var(--muted)", marginTop: "2px" }}>{r.note}</div>
+                  </div>
+                  <div className="stat-number" style={{ fontSize: "1.5rem", color: "#C8922A", flexShrink: 0 }}>{r.time}</div>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Accommodation */}
-          <div className="glass-card rounded-3xl p-10 border border-cyan-500/20">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-              <div>
-                <p className="text-cyan-400 text-sm font-semibold uppercase tracking-widest mb-3">
-                  Nastanitev
-                </p>
-                <h3 className="font-sora font-bold text-white text-3xl mb-4">
-                  Spi tik ob morju
-                </h3>
-                <p className="text-white/60 leading-relaxed mb-6">
-                  Nudimo opremljene apartmaje v neposredni bližini naše šole.
-                  Kuhinja, kopalnica, spalnica, TV, Wi-Fi — vse kar potrebuješ za popoln kite oddih.
-                </p>
-                <Link
-                  href="/contact"
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all"
-                >
-                  Povpraši o nastanitve
-                </Link>
-              </div>
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  { label: "Cena/osebo", value: "€10–15" },
-                  { label: "Družinski apt.", value: "€70/noč" },
-                  { label: "Kapaciteta", value: "3–5 oseb" },
-                  { label: "Razdalja od šole", value: "~2 km" },
-                ].map((item) => (
-                  <div key={item.label} className="bg-white/5 rounded-xl p-4 text-center">
-                    <div className="text-2xl font-sora font-bold text-cyan-400">{item.value}</div>
-                    <div className="text-white/40 text-xs mt-1">{item.label}</div>
-                  </div>
-                ))}
-              </div>
+          <div>
+            <p className="label" style={{ marginBottom: "12px" }}>Nastanitev</p>
+            <h2 className="display" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.25rem)", color: "var(--ocean)", marginBottom: "24px" }}>
+              Spi tik ob morju
+            </h2>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "1rem", color: "var(--muted)", lineHeight: 1.75, marginBottom: "32px" }}>
+              Opremljeni apartmaji v neposredni bližini šole — kuhinja, kopalnica, spalnica, TV, Wi-Fi.
+              Vse kar potrebuješ za popoln kite dopust.
+            </p>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "12px", marginBottom: "32px" }}>
+              {[
+                { v: "€10–15", l: "Cena / osebo" },
+                { v: "€70 / noč", l: "Družinski apt." },
+                { v: "3–5 oseb", l: "Kapaciteta" },
+                { v: "~2 km", l: "Od plaže" },
+              ].map((item) => (
+                <div key={item.l} style={{ background: "var(--sand)", border: "1px solid var(--border)", borderRadius: "6px", padding: "20px", textAlign: "center" }}>
+                  <div className="stat-number" style={{ fontSize: "1.5rem", color: "var(--ocean)" }}>{item.v}</div>
+                  <div style={{ fontFamily: "var(--font-inter)", fontSize: "0.75rem", color: "var(--muted)", marginTop: "4px" }}>{item.l}</div>
+                </div>
+              ))}
             </div>
+            <Link href="/contact" className="btn-primary">
+              Povpraši o nastanitve →
+            </Link>
           </div>
         </div>
       </section>
+
+      <style>{`
+        @media (max-width: 900px) {
+          .split-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .courses-grid { grid-template-columns: 1fr !important; }
+        }
+        @media (max-width: 700px) {
+          .wind-row { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .wind-row > div:last-child { text-align: left !important; }
+        }
+      `}</style>
     </>
   );
 }

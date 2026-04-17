@@ -2,38 +2,62 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#030810] border-t border-white/10">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand */}
+    <footer style={{ background: "var(--ocean)", color: "#fff" }}>
+      {/* Top border accent */}
+      <div style={{ height: "3px", background: "linear-gradient(90deg, #C8922A 0%, #E8B84B 50%, #C8922A 100%)" }} />
+
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "64px 24px 48px" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "48px" }} className="footer-grid">
+
+          {/* Brand col */}
           <div>
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg">
-                K
-              </div>
-              <span className="font-sora font-bold text-xl text-white">
-                Kite Šola <span className="text-cyan-400">North</span>
+            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "16px" }}>
+              <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                <path d="M16 2 L28 26 L16 22 L4 26 Z" fill="#C8922A" opacity="0.9"/>
+                <path d="M16 2 L28 26 L16 14 Z" fill="#C8922A"/>
+                <circle cx="16" cy="26" r="2.5" fill="#C8922A" opacity="0.6"/>
+              </svg>
+              <span style={{ fontFamily: "var(--font-sora)", fontWeight: 700, fontSize: "1.0625rem", letterSpacing: "-0.01em" }}>
+                Kite Šola <span style={{ color: "#C8922A" }}>North</span>
               </span>
             </div>
-            <p className="text-white/50 text-sm leading-relaxed max-w-xs">
-              Profesionalna kite šola na Jadranski obali. Zadar-Nin-Ljubač, Hrvaška.
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: "260px" }}>
+              Profesionalni kiteboarding tečaji na Jadranski obali — od prvega zmaja do samostojne vožnje.
             </p>
+            <div style={{ marginTop: "24px", display: "flex", gap: "12px" }}>
+              <a
+                href="https://wa.me/38641580250"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "4px", fontFamily: "var(--font-inter)", fontSize: "0.8125rem", fontWeight: 500, color: "rgba(255,255,255,0.7)", textDecoration: "none", transition: "border-color 0.2s" }}
+              >
+                WhatsApp
+              </a>
+              <a
+                href="viber://chat?number=38641580250"
+                style={{ display: "flex", alignItems: "center", gap: "6px", padding: "8px 14px", border: "1px solid rgba(255,255,255,0.15)", borderRadius: "4px", fontFamily: "var(--font-inter)", fontSize: "0.8125rem", fontWeight: 500, color: "rgba(255,255,255,0.7)", textDecoration: "none" }}
+              >
+                Viber
+              </a>
+            </div>
           </div>
 
-          {/* Links */}
+          {/* Navigation */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Navigacija</h3>
-            <ul className="space-y-3">
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#C8922A", marginBottom: "20px" }}>
+              Navigacija
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "12px" }}>
               {[
                 { href: "/", label: "Domov" },
                 { href: "/courses", label: "Tečaji & Cene" },
                 { href: "/location", label: "Lokacija" },
-                { href: "/contact", label: "Kontakt" },
+                { href: "/contact", label: "Kontakt & Prijava" },
               ].map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/50 hover:text-cyan-400 text-sm transition-colors"
+                    style={{ fontFamily: "var(--font-inter)", fontSize: "0.875rem", color: "rgba(255,255,255,0.5)", textDecoration: "none", transition: "color 0.2s" }}
                   >
                     {link.label}
                   </Link>
@@ -44,43 +68,42 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="text-white font-semibold mb-4">Kontakt</h3>
-            <ul className="space-y-3 text-sm text-white/50">
-              <li className="flex items-start gap-2">
-                <span>📍</span>
-                <span>Zadar-Nin-Ljubač, Hrvaška<br />15 km od centra Zadra</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <span>📱</span>
-                <a
-                  href="https://wa.me/38641580250"
-                  className="hover:text-cyan-400 transition-colors"
-                >
-                  WhatsApp: +386 41 580 250
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <span>💬</span>
-                <a
-                  href="viber://chat?number=38641580250"
-                  className="hover:text-cyan-400 transition-colors"
-                >
-                  Viber: +386 41 580 250
-                </a>
-              </li>
+            <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.6875rem", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", color: "#C8922A", marginBottom: "20px" }}>
+              Kontakt
+            </p>
+            <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: "14px" }}>
+              {[
+                { icon: "📍", text: "Zadar-Nin-Ljubač, Hrvaška\n15 km od centra Zadra" },
+                { icon: "📱", text: "+386 41 580 250\nWhatsApp & Viber" },
+                { icon: "📅", text: "Sezona: Julij – Avgust\nMaestral · Burja · Tramontana" },
+              ].map((item, i) => (
+                <li key={i} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                  <span style={{ fontSize: "0.875rem", marginTop: "1px" }}>{item.icon}</span>
+                  <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: "rgba(255,255,255,0.5)", lineHeight: 1.6, whiteSpace: "pre-line" }}>
+                    {item.text}
+                  </span>
+                </li>
+              ))}
             </ul>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-          <p className="text-white/30 text-sm">
+        {/* Bottom row */}
+        <div style={{ marginTop: "56px", paddingTop: "24px", borderTop: "1px solid rgba(255,255,255,0.08)", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "12px" }}>
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: "rgba(255,255,255,0.3)" }}>
             © {new Date().getFullYear()} Kite Šola North. Vse pravice pridržane.
           </p>
-          <p className="text-white/30 text-xs">
-            Sezona: Julij – Avgust · Maestral in Burja
+          <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.75rem", color: "rgba(255,255,255,0.2)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
+            Jadranska obala · Hrvaška
           </p>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .footer-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
+        }
+      `}</style>
     </footer>
   );
 }

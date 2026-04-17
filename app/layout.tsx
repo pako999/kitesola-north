@@ -7,35 +7,36 @@ import Footer from "@/components/Footer";
 const sora = Sora({
   variable: "--font-sora",
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["600", "700", "800"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   weight: ["400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Kite Šola North | Kiteboarding Tečaji – Zadar, Hrvaška",
   description:
-    "Naučite se kiteboarding v kristalno čisti Jadranski morji. Spoznavni tečaj €190, začetni tečaj €520. Lokacija Zadar-Nin-Ljubač. WhatsApp: +386 41 580 250.",
-  keywords: "kiteboarding, kite šola, kite tečaj, Zadar, Nin, Hrvaška, naučiti kitesurfing",
+    "Profesionalni kiteboarding tečaji na Jadranu. Plitva voda, odlični vetrovi, certicirani inštruktorji. Zadar-Nin-Ljubač, Hrvaška. Sezona julij–avgust.",
+  keywords: "kiteboarding tečaj, kite šola, kitesurfing Zadar, Nin, Hrvaška",
   openGraph: {
-    title: "Kite Šola North | Kiteboarding Tečaji – Zadar",
-    description: "Začnite svojo kite avanturo v Zadar-Nin-Ljubač. Profesionalni inštruktorji, plitva voda, idealni pogoji.",
+    title: "Kite Šola North | Kiteboarding Zadar",
+    description: "Začnite svojo kite avanturo. Spoznavni tečaj €190 · Začetni tečaj €520.",
     type: "website",
+    locale: "sl_SI",
   },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="sl" className={`${sora.variable} ${inter.variable}`}>
-      <body className="bg-[#060E1A] text-white antialiased">
+      <body>
         <Navbar />
         <main>{children}</main>
         <Footer />

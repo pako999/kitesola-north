@@ -5,7 +5,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/", label: "Domov" },
   { href: "/courses", label: "Tečaji" },
   { href: "/location", label: "Lokacija" },
   { href: "/contact", label: "Kontakt" },
@@ -15,43 +14,60 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
+  const isHome = pathname === "/";
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 48);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const scrolledOrInner = scrolled || !isHome;
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-[#060E1A]/95 backdrop-blur-md border-b border-white/10 shadow-lg"
-          : "bg-transparent"
-      }`}
+      style={{
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        zIndex: 100,
+        transition: "background 0.3s, border-color 0.3s, box-shadow 0.3s",
+        background: scrolledOrInner ? "rgba(11,32,53,0.97)" : "transparent",
+        borderBottom: scrolledOrInner ? "1px solid rgba(255,255,255,0.08)" : "1px solid transparent",
+        boxShadow: scrolledOrInner ? "0 1px 40px rgba(0,0,0,0.3)" : "none",
+        backdropFilter: scrolledOrInner ? "blur(12px)" : "none",
+      }}
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div style={{ maxWidth: "1200px", margin: "0 auto", padding: "0 24px", height: "72px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
-            K
-          </div>
-          <span className="font-sora font-bold text-xl text-white tracking-tight">
-            Kite Šola <span className="text-cyan-400">North</span>
+        <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+            <path d="M16 2 L28 26 L16 22 L4 26 Z" fill="#C8922A" opacity="0.9"/>
+            <path d="M16 2 L28 26 L16 14 Z" fill="#C8922A"/>
+            <circle cx="16" cy="26" r="2.5" fill="#C8922A" opacity="0.6"/>
+          </svg>
+          <span style={{ fontFamily: "var(--font-sora)", fontWeight: 700, fontSize: "1.125rem", color: "#fff", letterSpacing: "-0.01em" }}>
+            Kite Šola <span style={{ color: "#C8922A" }}>North</span>
           </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
+        {/* Desktop nav */}
+        <nav style={{ display: "flex", alignItems: "center", gap: "36px" }} className="hidden-mobile">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`text-sm font-medium transition-colors duration-200 ${
-                pathname === link.href
-                  ? "text-cyan-400"
-                  : "text-white/70 hover:text-white"
-              }`}
+              style={{
+                fontFamily: "var(--font-inter)",
+                fontSize: "0.875rem",
+                fontWeight: 500,
+                color: pathname === link.href ? "#C8922A" : "rgba(255,255,255,0.75)",
+                textDecoration: "none",
+                letterSpacing: "0.01em",
+                transition: "color 0.2s",
+              }}
             >
               {link.label}
             </Link>
@@ -60,7 +76,18 @@ export default function Navbar() {
             href="https://wa.me/38641580250"
             target="_blank"
             rel="noopener noreferrer"
-            className="ml-2 px-5 py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold hover:from-cyan-400 hover:to-blue-500 transition-all duration-200 shadow-lg shadow-cyan-900/30"
+            style={{
+              fontFamily: "var(--font-inter)",
+              fontSize: "0.875rem",
+              fontWeight: 600,
+              color: "#fff",
+              background: "#C8922A",
+              padding: "10px 22px",
+              borderRadius: "4px",
+              textDecoration: "none",
+              letterSpacing: "0.01em",
+              transition: "background 0.2s",
+            }}
           >
             Prijavi se
           </a>
@@ -68,51 +95,58 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-white p-2"
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label="Menu"
+          style={{ background: "none", border: "none", cursor: "pointer", padding: "8px", display: "none" }}
+          className="show-mobile"
         >
-          <div className="space-y-1.5">
-            <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`}
-            />
-            <span
-              className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`}
-            />
-          </div>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="1.75" strokeLinecap="round">
+            {menuOpen ? (
+              <>
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+              </>
+            ) : (
+              <>
+                <line x1="3" y1="8" x2="21" y2="8"/>
+                <line x1="3" y1="16" x2="21" y2="16"/>
+              </>
+            )}
+          </svg>
         </button>
       </div>
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div className="md:hidden bg-[#0A1628]/98 backdrop-blur-md border-t border-white/10">
-          <nav className="flex flex-col px-6 py-6 gap-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => setMenuOpen(false)}
-                className={`text-base font-medium py-2 transition-colors ${
-                  pathname === link.href ? "text-cyan-400" : "text-white/80"
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
-            <a
-              href="https://wa.me/38641580250"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold text-center"
+        <div style={{ background: "rgba(11,32,53,0.99)", borderTop: "1px solid rgba(255,255,255,0.08)", padding: "20px 24px 28px" }}>
+          {navLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              style={{ display: "block", padding: "12px 0", fontFamily: "var(--font-inter)", fontSize: "1rem", fontWeight: 500, color: pathname === link.href ? "#C8922A" : "rgba(255,255,255,0.85)", textDecoration: "none", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
             >
-              Prijavi se
-            </a>
-          </nav>
+              {link.label}
+            </Link>
+          ))}
+          <a
+            href="https://wa.me/38641580250"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMenuOpen(false)}
+            style={{ display: "block", marginTop: "20px", padding: "14px", background: "#C8922A", color: "#fff", fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "0.9375rem", textAlign: "center", textDecoration: "none", borderRadius: "4px" }}
+          >
+            Prijavi se →
+          </a>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .hidden-mobile { display: none !important; }
+          .show-mobile { display: block !important; }
+        }
+      `}</style>
     </header>
   );
 }
