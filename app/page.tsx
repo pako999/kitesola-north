@@ -88,8 +88,8 @@ export default function Home() {
         {/* Gradient overlay — slightly stronger at top for navbar readability */}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(11,32,53,0.45) 0%, rgba(11,32,53,0.25) 35%, rgba(11,32,53,0.80) 100%)" }} />
 
-        {/* Content */}
-        <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 24px 80px", width: "100%" }}>
+        {/* Content — extra bottom padding so buttons clear the stats bar (~72px tall) */}
+        <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 24px 160px", width: "100%" }}>
           {/* Eyebrow */}
           <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "24px" }}>
             <div style={{ width: "32px", height: "1px", background: "#C8922A" }} />
@@ -109,34 +109,35 @@ export default function Home() {
           </p>
 
           {/* CTA row */}
-          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "center" }}>
+          <div style={{ display: "flex", gap: "14px", flexWrap: "wrap", alignItems: "stretch" }}>
+            {/* Primary — gold */}
             <Link
               href="/contact"
               style={{
-                display: "inline-flex", alignItems: "center", gap: "8px",
-                padding: "16px 36px",
+                display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                padding: "0 40px", height: "56px",
                 background: "#C8922A",
                 color: "#fff",
                 fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "1rem",
-                borderRadius: "4px", textDecoration: "none", letterSpacing: "0.01em",
+                borderRadius: "6px", textDecoration: "none", letterSpacing: "0.02em",
                 border: "2px solid #C8922A",
-                transition: "background 0.2s",
+                whiteSpace: "nowrap",
               }}
             >
               Prijavi se na tečaj →
             </Link>
+            {/* Secondary — white outline */}
             <Link
               href="/courses"
               style={{
-                display: "inline-flex", alignItems: "center", gap: "8px",
-                padding: "16px 36px",
-                background: "rgba(255,255,255,0.12)",
+                display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px",
+                padding: "0 40px", height: "56px",
+                background: "rgba(255,255,255,0.10)",
                 color: "#fff",
                 fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "1rem",
-                borderRadius: "4px", textDecoration: "none", letterSpacing: "0.01em",
-                border: "2px solid rgba(255,255,255,0.6)",
-                backdropFilter: "blur(4px)",
-                transition: "background 0.2s, border-color 0.2s",
+                borderRadius: "6px", textDecoration: "none", letterSpacing: "0.02em",
+                border: "2px solid rgba(255,255,255,0.75)",
+                whiteSpace: "nowrap",
               }}
             >
               Oglej si tečaje
