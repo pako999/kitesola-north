@@ -2,6 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+const IMG = {
+  bay:   "https://www.kitesola-north.si/wp-content/uploads/2022/07/13937767_10154288279987211_6400065277025921007_o.jpeg",
+  rider: "https://www.kitesola-north.si/wp-content/uploads/2022/07/456732_10150625772302211_1014554783_o-1024x681.jpeg",
+  kite:  "https://www.kitesola-north.si/wp-content/uploads/2022/07/414444_10150772783877211_2131148202_o-1024x577.jpeg",
+};
+
 export const metadata: Metadata = {
   title: "Tečaji & Cene | Kite Šola North",
   description: "Spoznavni tečaj €190 · Začetni tečaj €520 · Zasebne ure €100/h. Zadar-Nin-Ljubač.",
@@ -14,7 +20,7 @@ const courses = [
     name: "Spoznavni tečaj",
     duration: "3 ure",
     price: "€190",
-    img: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=900&q=80",
+    img: IMG.bay,
     tag: "Idealno za začetek",
     lead: "Tvoj prvi stik z zmajem in morjem — varen, strukturiran in nepozaben.",
     description: "Idealen za vsakogar, ki želi spoznati kiteboarding brez dolgotrajnih obveznosti. V treh intenzivnih urah pridobiš trdne osnove, ki so predpogoj za vsak napredek.",
@@ -34,7 +40,7 @@ const courses = [
     name: "Začetni tečaj",
     duration: "4 dni · 12 ur skupaj",
     price: "€520",
-    img: "https://images.unsplash.com/photo-1530053969600-caed2596d242?w=900&q=80",
+    img: IMG.rider,
     tag: "Najpopularnejši",
     featured: true,
     lead: "Od kopnega do samostojne vožnje po morju v štirih intenzivnih dneh.",
@@ -58,7 +64,7 @@ const courses = [
     duration: "1 ura (min. 2 uri priporočeno)",
     price: "€100",
     priceNote: "/ ura",
-    img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900&q=80",
+    img: IMG.kite,
     tag: "1 na 1",
     lead: "Inštruktor se posveti izključno tebi — hiter napredek, prilagojen tvojemu ritmu.",
     description: "Idealno za povratnike, vmesne nivoje in vsakogar, ki želi pospešiti napredek z individualnim pristopom brez skupinskih tečajev.",
@@ -88,13 +94,13 @@ export default function CoursesPage() {
     <>
       {/* PAGE HEADER */}
       <section style={{ background: "var(--ocean)", padding: "120px 24px 80px", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, opacity: 0.08 }}>
+        <div style={{ position: "absolute", inset: 0, opacity: 0.12 }}>
           <Image
-            src="https://images.unsplash.com/photo-1530053969600-caed2596d242?w=1400&q=60"
+            src={IMG.rider}
             alt=""
             fill
             sizes="100vw"
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "cover", objectPosition: "center 30%" }}
           />
         </div>
         <div style={{ position: "relative", zIndex: 1, maxWidth: "1200px", margin: "0 auto" }}>

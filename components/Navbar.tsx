@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
@@ -43,14 +44,13 @@ export default function Navbar() {
 
         {/* Logo */}
         <Link href="/" style={{ display: "flex", alignItems: "center", gap: "10px", textDecoration: "none" }}>
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
-            <path d="M16 2 L28 26 L16 22 L4 26 Z" fill="#C8922A" opacity="0.9"/>
-            <path d="M16 2 L28 26 L16 14 Z" fill="#C8922A"/>
-            <circle cx="16" cy="26" r="2.5" fill="#C8922A" opacity="0.6"/>
-          </svg>
-          <span style={{ fontFamily: "var(--font-sora)", fontWeight: 700, fontSize: "1.125rem", color: "#fff", letterSpacing: "-0.01em" }}>
-            Kite Šola <span style={{ color: "#C8922A" }}>North</span>
-          </span>
+          <Image
+            src="https://www.kitesola-north.si/wp-content/uploads/2022/07/kitesola_north.png"
+            alt="Kite Šola North"
+            width={120}
+            height={36}
+            style={{ objectFit: "contain", filter: "brightness(0) invert(1)" }}
+          />
         </Link>
 
         {/* Desktop nav */}

@@ -1,6 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/* ─── Real images from kitesola-north.si ────────────── */
+const IMG = {
+  bay:    "https://www.kitesola-north.si/wp-content/uploads/2022/07/13937767_10154288279987211_6400065277025921007_o.jpeg",
+  rider:  "https://www.kitesola-north.si/wp-content/uploads/2022/07/456732_10150625772302211_1014554783_o-1024x681.jpeg",
+  kite:   "https://www.kitesola-north.si/wp-content/uploads/2022/07/414444_10150772783877211_2131148202_o-1024x577.jpeg",
+};
+
 /* ─── Data ─────────────────────────────────────────── */
 const stats = [
   { value: "500+", label: "Zadovoljnih učencev" },
@@ -39,7 +46,7 @@ const courses = [
     duration: "3 ure",
     price: "€190",
     desc: "Idealen uvod v kiteboarding. Teorija, varnost in prvi koraki z zmajem.",
-    img: "https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=800&q=80",
+    img: IMG.bay,
   },
   {
     slug: "zacetni",
@@ -47,7 +54,7 @@ const courses = [
     duration: "4 dni · 12 ur",
     price: "€520",
     desc: "Od tal do samostojne vožnje. Naš najpopularnejši program.",
-    img: "https://images.unsplash.com/photo-1530053969600-caed2596d242?w=800&q=80",
+    img: IMG.rider,
     featured: true,
   },
   {
@@ -56,7 +63,7 @@ const courses = [
     duration: "1 ura",
     price: "€100/h",
     desc: "Individualen pristop, hiter napredek, fleksibilen urnik.",
-    img: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80",
+    img: IMG.kite,
   },
 ];
 
@@ -71,15 +78,15 @@ export default function Home() {
       <section style={{ position: "relative", minHeight: "100svh", display: "flex", alignItems: "flex-end" }}>
         {/* Background photo */}
         <Image
-          src="https://images.unsplash.com/photo-1606159068539-43f36b99d1b2?w=1800&q=85"
-          alt="Kiteboarding na Jadranu"
+          src={IMG.bay}
+          alt="Kiteboarding na Jadranu — Zadar-Nin-Ljubač"
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center 40%" }}
+          style={{ objectFit: "cover", objectPosition: "center 55%" }}
         />
-        {/* Gradient overlay */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(11,32,53,0.2) 0%, rgba(11,32,53,0.3) 40%, rgba(11,32,53,0.85) 100%)" }} />
+        {/* Gradient overlay — slightly stronger at top for navbar readability */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(11,32,53,0.45) 0%, rgba(11,32,53,0.25) 35%, rgba(11,32,53,0.80) 100%)" }} />
 
         {/* Content */}
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 24px 80px", width: "100%" }}>
@@ -102,11 +109,36 @@ export default function Home() {
           </p>
 
           {/* CTA row */}
-          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap" }}>
-            <Link href="/contact" className="btn-primary" style={{ fontSize: "1rem", padding: "14px 32px" }}>
+          <div style={{ display: "flex", gap: "16px", flexWrap: "wrap", alignItems: "center" }}>
+            <Link
+              href="/contact"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "8px",
+                padding: "16px 36px",
+                background: "#C8922A",
+                color: "#fff",
+                fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "1rem",
+                borderRadius: "4px", textDecoration: "none", letterSpacing: "0.01em",
+                border: "2px solid #C8922A",
+                transition: "background 0.2s",
+              }}
+            >
               Prijavi se na tečaj →
             </Link>
-            <Link href="/courses" className="btn-outline" style={{ fontSize: "1rem", padding: "14px 32px" }}>
+            <Link
+              href="/courses"
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "8px",
+                padding: "16px 36px",
+                background: "rgba(255,255,255,0.12)",
+                color: "#fff",
+                fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "1rem",
+                borderRadius: "4px", textDecoration: "none", letterSpacing: "0.01em",
+                border: "2px solid rgba(255,255,255,0.6)",
+                backdropFilter: "blur(4px)",
+                transition: "background 0.2s, border-color 0.2s",
+              }}
+            >
               Oglej si tečaje
             </Link>
           </div>
@@ -151,22 +183,22 @@ export default function Home() {
 
           {/* Photo collage */}
           <div style={{ position: "relative", height: "500px" }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: "20%", bottom: "20%", borderRadius: "8px", overflow: "hidden" }}>
+            <div style={{ position: "absolute", top: 0, left: 0, right: "20%", bottom: "20%", borderRadius: "8px", overflow: "hidden", boxShadow: "0 8px 40px rgba(0,0,0,0.18)" }}>
               <Image
-                src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=700&q=80"
-                alt="Plaža Zadar"
+                src={IMG.bay}
+                alt="Kiteboarding lokacija Zadar-Nin-Ljubač"
                 fill
                 sizes="(max-width: 768px) 100vw, 40vw"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", objectPosition: "center 60%" }}
               />
             </div>
-            <div style={{ position: "absolute", bottom: 0, right: 0, left: "30%", top: "30%", borderRadius: "8px", overflow: "hidden", border: "4px solid var(--cream)" }}>
+            <div style={{ position: "absolute", bottom: 0, right: 0, left: "30%", top: "30%", borderRadius: "8px", overflow: "hidden", border: "5px solid var(--cream)", boxShadow: "0 8px 40px rgba(0,0,0,0.22)" }}>
               <Image
-                src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600&q=80"
-                alt="Kiteboarding"
+                src={IMG.rider}
+                alt="Kitesurfer v akciji"
                 fill
                 sizes="(max-width: 768px) 100vw, 30vw"
-                style={{ objectFit: "cover" }}
+                style={{ objectFit: "cover", objectPosition: "center 30%" }}
               />
             </div>
             {/* Gold accent badge */}
@@ -292,13 +324,13 @@ export default function Home() {
       ════════════════════════════════════════════ */}
       <section style={{ position: "relative", padding: "120px 24px", overflow: "hidden" }}>
         <Image
-          src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&q=80"
-          alt="Jadransko morje"
+          src={IMG.kite}
+          alt="Kite v zraku nad Jadranom"
           fill
           sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center" }}
+          style={{ objectFit: "cover", objectPosition: "center 40%" }}
         />
-        <div style={{ position: "absolute", inset: 0, background: "rgba(11,32,53,0.75)" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(11,32,53,0.72)" }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
           <svg width="48" height="36" viewBox="0 0 48 36" fill="none" style={{ marginBottom: "32px", opacity: 0.4 }}>
             <path d="M0 36V22C0 8 8 2 24 0l3 5C16 7 13 12 12 18h12V36H0zm24 0V22C24 8 32 2 48 0l3 5C40 7 37 12 36 18h12V36H24z" fill="white"/>
@@ -367,15 +399,29 @@ export default function Home() {
             Tečaji se zapolnijo hitro. Oddaj prijavo ali nas kontaktiraj na WhatsApp za hiter odgovor.
           </p>
           <div style={{ display: "flex", gap: "16px", justifyContent: "center", flexWrap: "wrap" }}>
-            <Link href="/contact" className="btn-primary" style={{ fontSize: "1rem", padding: "16px 36px" }}>
+            <Link
+              href="/contact"
+              style={{
+                display: "inline-flex", alignItems: "center", padding: "16px 40px",
+                background: "#C8922A", color: "#fff", border: "2px solid #C8922A",
+                fontFamily: "var(--font-inter)", fontWeight: 700, fontSize: "1rem",
+                borderRadius: "4px", textDecoration: "none",
+              }}
+            >
               Prijavi se na tečaj →
             </Link>
             <a
               href="https://wa.me/38641580250"
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-outline"
-              style={{ fontSize: "1rem", padding: "16px 36px" }}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "8px",
+                padding: "16px 40px",
+                background: "transparent", color: "#fff",
+                border: "2px solid rgba(255,255,255,0.5)",
+                fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "1rem",
+                borderRadius: "4px", textDecoration: "none",
+              }}
             >
               WhatsApp
             </a>

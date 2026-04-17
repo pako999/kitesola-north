@@ -2,6 +2,12 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
+const IMG = {
+  bay:   "https://www.kitesola-north.si/wp-content/uploads/2022/07/13937767_10154288279987211_6400065277025921007_o.jpeg",
+  rider: "https://www.kitesola-north.si/wp-content/uploads/2022/07/456732_10150625772302211_1014554783_o-1024x681.jpeg",
+  kite:  "https://www.kitesola-north.si/wp-content/uploads/2022/07/414444_10150772783877211_2131148202_o-1024x577.jpeg",
+};
+
 export const metadata: Metadata = {
   title: "Lokacija Zadar-Nin-Ljubač | Kite Šola North",
   description: "Kiteboarding v Zadar-Nin-Ljubač, Hrvaška. 3 lokacije, plitva voda, Maestral in Burja. 4h od Ljubljane.",
@@ -56,12 +62,12 @@ export default function LocationPage() {
       {/* HERO */}
       <section style={{ position: "relative", height: "60vh", minHeight: "420px", display: "flex", alignItems: "flex-end" }}>
         <Image
-          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=85"
-          alt="Plaža Zadar-Nin"
+          src={IMG.bay}
+          alt="Kiteboarding lokacija Zadar-Nin-Ljubač"
           fill
           priority
           sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center 60%" }}
+          style={{ objectFit: "cover", objectPosition: "center 55%" }}
         />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(11,32,53,0.15), rgba(11,32,53,0.8))" }} />
         <div style={{ position: "relative", zIndex: 2, maxWidth: "1200px", margin: "0 auto", padding: "0 24px 60px", width: "100%" }}>
