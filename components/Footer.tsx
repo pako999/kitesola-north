@@ -52,6 +52,7 @@ export default function Footer() {
                 { href: "/", label: "Domov" },
                 { href: "/courses", label: "Tečaji & Cene" },
                 { href: "/location", label: "Lokacija" },
+                { href: "/blog", label: "Blog" },
                 { href: "/contact", label: "Kontakt & Prijava" },
               ].map((link) => (
                 <li key={link.href}>
