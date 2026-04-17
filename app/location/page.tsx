@@ -18,27 +18,27 @@ const spots = [
     no: "01",
     name: "Ljubač",
     tag: "Glavna lokacija",
-    wind: "Maestral (JZ)",
+    winds: ["Maestral (JZ)"],
     depth: "Do kolena",
-    desc: "Naša primarna lokacija — ogromen plitki zaliv s peščenim dnom. Idealna za vse nivoje, parkiranje tik ob vodi.",
+    desc: "Ogromen zaliv dolg 1 km s plitko, prozorno vodo in peščeno plažo. Brezplačen parking tik ob vodi, lokal na plaži, varno okolje za družine z otroki. Idealna lokacija za vse nivoje — od začetnikov do izkušenih kiteboarderjev.",
     primary: true,
   },
   {
     no: "02",
     name: "Nin",
     tag: "Laguna",
-    wind: "Tramontana (S)",
+    winds: ["Maestral (JZ)", "Burja (SV)", "Tramontana (S)"],
     depth: "Do pasu",
-    desc: "Čudovita laguna ob zgodovinskem mestu Nin. Idealna za severni veter, zavetišče za vmesne kiteboarderje.",
+    desc: "Čudovita laguna ob zgodovinskem mestu Nin. Deluje za vse tri jadranske vetrove — Maestral, Burja in Tramontana. Idealna za začetnike in vmesne kiteboarderje, z dostopom do zgodovinskega mesta Nin.",
     primary: false,
   },
   {
     no: "03",
     name: "Zadar okolica",
     tag: "Rezervna lokacija",
-    wind: "Burja (SV)",
+    winds: ["Burja (SV)", "Jugo (J)"],
     depth: "Do prsi",
-    desc: "Rezervna lokacija za dneve z burjo. Zavetišče za izkušene kiteboarderje z boljšo kontrolo zmaja.",
+    desc: "Rezervna lokacija za dneve z burjo in jugom. Zavetišče za izkušene kiteboarderje z boljšo kontrolo zmaja.",
     primary: false,
   },
 ];
@@ -154,16 +154,36 @@ export default function LocationPage() {
                 <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.9375rem", color: s.primary ? "rgba(255,255,255,0.6)" : "var(--muted)", lineHeight: 1.7, marginBottom: "28px" }}>
                   {s.desc}
                 </p>
-                <div style={{ borderTop: `1px solid ${s.primary ? "rgba(255,255,255,0.12)" : "var(--border)"}`, paddingTop: "20px", display: "flex", flexDirection: "column", gap: "8px" }}>
-                  {[
-                    { k: "Veter", v: s.wind },
-                    { k: "Globina vode", v: s.depth },
-                  ].map((row) => (
-                    <div key={row.k} style={{ display: "flex", justifyContent: "space-between" }}>
-                      <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: s.primary ? "rgba(255,255,255,0.35)" : "var(--muted)" }}>{row.k}</span>
-                      <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", fontWeight: 600, color: s.primary ? "#C8922A" : "var(--ocean)" }}>{row.v}</span>
+                <div style={{ borderTop: `1px solid ${s.primary ? "rgba(255,255,255,0.12)" : "var(--border)"}`, paddingTop: "20px", display: "flex", flexDirection: "column", gap: "10px" }}>
+                  {/* Wind badges */}
+                  <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: "8px" }}>
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: s.primary ? "rgba(255,255,255,0.35)" : "var(--muted)", flexShrink: 0, paddingTop: "3px" }}>Veter</span>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "5px", justifyContent: "flex-end" }}>
+                      {s.winds.map((w) => (
+                        <span
+                          key={w}
+                          style={{
+                            fontFamily: "var(--font-inter)",
+                            fontSize: "0.75rem",
+                            fontWeight: 600,
+                            color: s.primary ? "#C8922A" : "var(--ocean)",
+                            background: s.primary ? "rgba(200,146,42,0.15)" : "rgba(11,32,53,0.07)",
+                            border: `1px solid ${s.primary ? "rgba(200,146,42,0.3)" : "rgba(11,32,53,0.15)"}`,
+                            borderRadius: "3px",
+                            padding: "3px 8px",
+                            letterSpacing: "0.01em",
+                          }}
+                        >
+                          {w}
+                        </span>
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                  {/* Depth */}
+                  <div style={{ display: "flex", justifyContent: "space-between" }}>
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", color: s.primary ? "rgba(255,255,255,0.35)" : "var(--muted)" }}>Globina vode</span>
+                    <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.8125rem", fontWeight: 600, color: s.primary ? "#C8922A" : "var(--ocean)" }}>{s.depth}</span>
+                  </div>
                 </div>
               </div>
             ))}
