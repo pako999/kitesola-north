@@ -7,19 +7,29 @@ export interface Post {
   readMinutes: number;
   publishDate: string;
   intro: string;
+  image: string;
+  imageAlt: string;
   sections: { heading: string; body: string }[];
   cta: string;
 }
 
+const IMG = {
+  bay:   "https://www.kitesola-north.si/wp-content/uploads/2022/07/13937767_10154288279987211_6400065277025921007_o.jpeg",
+  rider: "https://www.kitesola-north.si/wp-content/uploads/2022/07/456732_10150625772302211_1014554783_o-1024x681.jpeg",
+  kite:  "https://www.kitesola-north.si/wp-content/uploads/2022/07/414444_10150772783877211_2131148202_o-1024x577.jpeg",
+};
+
 export const posts: Post[] = [
   {
-    slug: "kite-sola-hrvaška-nin-ljubac-zacetniki",
+    slug: "kite-sola-hrvaska-nin-ljubac-zacetniki",
     title: "Kite šola Hrvaška: Zakaj sta Nin in Ljubač idealni mesti za začetnike",
     metaDescription: "Iščeš kite šolo na Hrvaškem? Nin in Ljubač sta najboljši destinaciji za kiteboarding tečaj — plitva voda, Maestral, brezplačen parking. Kite Šola North.",
     keywords: ["kite šola Hrvaška", "kite tečaj Nin", "kiteboarding Ljubač", "kite šola za začetnike Hrvaška"],
     category: "Lokacija",
     readMinutes: 6,
     publishDate: "2025-04-10",
+    image: IMG.bay,
+    imageAlt: "Ninska laguna — plitva voda za kiteboarding začetnike",
     intro: "Hrvaška je dom nekaterih najboljših kiteboarding destinacij v Evropi — toda ne vse lokacije so enake. Če si začetnik, je izbira pravega spota ključna za hiter in varen napredek. Nin in Ljubač pri Zadru sta dve mesti, ki ju mnogi izkušeni kiteboarderji postavijo na sam vrh za učenje.",
     sections: [
       {
@@ -58,6 +68,8 @@ export const posts: Post[] = [
     category: "Tečaji",
     readMinutes: 5,
     publishDate: "2025-04-08",
+    image: IMG.rider,
+    imageAlt: "Kiteboarding tečaj — učenec z inštruktorjem na vodi",
     intro: "Ena prvih vprašanj, ki si jih zastavijo bodoči kiteboarderji, je: koliko bo to stalo? Cene se med šolami razlikujejo, prav tako pa to, kaj je v ceno vključeno. Tukaj je popoln pregled stroškov kiteboarding tečaja.",
     sections: [
       {
@@ -96,6 +108,8 @@ export const posts: Post[] = [
     category: "Nasveti",
     readMinutes: 7,
     publishDate: "2025-04-05",
+    image: IMG.kite,
+    imageAlt: "Kite v zraku nad Jadranom — prvi koraki kiteboarding",
     intro: "Kiteboarding je eden izmed najhitreje rastočih vodnih športov na svetu — in z dobrim razlogom. Kombinira adrenalin, naravo in svobodo na način, ki ga malo kateri šport ponudi. Toda kako sploh začeti? Tukaj je realen, korak-za-korakom vodič za popolne začetnike.",
     sections: [
       {
@@ -134,6 +148,8 @@ export const posts: Post[] = [
     category: "Varnost",
     readMinutes: 6,
     publishDate: "2025-04-03",
+    image: IMG.rider,
+    imageAlt: "Kiteboarding varnost — kitar na vodi z opremo",
     intro: "Kiteboarding ima sloves adrenalinsega in nevarnega sporta. Slike kitarjev, ki se vzpenjajo 10 metrov v zrak, ne pomagajo k boljšemu vtisu. Toda kakšna je resnica? Je kiteboarding dejansko nevaren — ali je strah večji od dejanske nevarnosti?",
     sections: [
       {
@@ -172,6 +188,8 @@ export const posts: Post[] = [
     category: "Nasveti",
     readMinutes: 5,
     publishDate: "2025-03-28",
+    image: IMG.bay,
+    imageAlt: "Plitva voda Ninske lagune — primerna za vse starosti",
     intro: "\"Ali sem prestar za kiteboarding?\" je vprašanje, ki ga slišimo pogosto. Kratek odgovor: verjetno ne. Kiteboarding je šport, ki ga z uspehom prakticirajo ljudje od 14 do 65 let in več. Tukaj je vse, kar morate vedeti o starosti in kiteboarding tečaju.",
     sections: [
       {
@@ -206,6 +224,8 @@ export const posts: Post[] = [
     category: "Oprema",
     readMinutes: 7,
     publishDate: "2025-03-25",
+    image: IMG.kite,
+    imageAlt: "Kiteboarding oprema — kite v zraku nad morjem",
     intro: "Kiteboarding oprema je zapletena, draga in zelo odvisna od pogojev ter vašega nivoja. Najpogostejša napaka začetnikov? Kupiti opremo PRED tečajem. Tukaj je realen vodič, kaj potrebujete in kdaj.",
     sections: [
       {
@@ -244,6 +264,8 @@ export const posts: Post[] = [
     category: "Lokacija",
     readMinutes: 6,
     publishDate: "2025-03-20",
+    image: IMG.bay,
+    imageAlt: "Kiteboarding spot Zadar — Nin in Ljubač",
     intro: "Zadar in njegova okolica so eno najboljših kiteboarding področij na vzhodnem Jadranu. Tri različne lokacije v radiju 10 km, trije različni vetrovi in pogoji za vse nivoje — od začetnikov do naprednih kitarjev. Tukaj je vaš vodič.",
     sections: [
       {
@@ -282,6 +304,8 @@ export const posts: Post[] = [
     category: "Nasveti",
     readMinutes: 7,
     publishDate: "2025-03-15",
+    image: IMG.rider,
+    imageAlt: "Kiteboarder na vodi — primerjava vodnih športov",
     intro: "Stojite pred zalijo, veter piha, in razmišljate: kiteboarding, windsurfing ali surf? Vsak šport ima svoje prednosti, idealne pogoje in krivuljo učenja. Tukaj je poštena primerjava, ki vam bo pomagala izbrati pravi šport.",
     sections: [
       {
@@ -320,6 +344,8 @@ export const posts: Post[] = [
     category: "Tečaji",
     readMinutes: 6,
     publishDate: "2025-03-10",
+    image: IMG.bay,
+    imageAlt: "Kiteboarding počitnice — zaliv Ljubač pri Zadru",
     intro: "Kiteboarding počitnice so fenomen, ki združuje učenje novega športa z odmorom ob morju. Zadar-Nin-Ljubač je za Slovence idealna destinacija — blizu, dostopna z avtom, z odlično kiteboarding infrastrukturo in vsem, kar potrebujete za popoln dopust.",
     sections: [
       {
@@ -358,6 +384,8 @@ export const posts: Post[] = [
     category: "Tečaji",
     readMinutes: 5,
     publishDate: "2025-03-05",
+    image: IMG.kite,
+    imageAlt: "IKO certifikat — kite v zraku, mednarodna licenca",
     intro: "Ko se odločite za kiteboarding tečaj, boste pogosto slišali besedo IKO. Kaj to je? Je resnično pomembno? In kaj točno pridobite po opravljenem tečaju? Tukaj je vse, kar morate vedeti o IKO certifikatu.",
     sections: [
       {

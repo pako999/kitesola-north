@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { posts } from "@/lib/posts";
@@ -67,15 +68,19 @@ export default function BlogIndex() {
                   Preberi več →
                 </span>
               </div>
-              {/* Right: accent panel */}
-              <div style={{ background: "var(--ocean)", display: "flex", alignItems: "center", justifyContent: "center", padding: "48px", minHeight: "320px" }}>
-                <div style={{ textAlign: "center" }}>
-                  <div style={{ fontFamily: "var(--font-sora)", fontWeight: 800, fontSize: "4rem", color: "#C8922A", lineHeight: 1 }}>
-                    #1
-                  </div>
-                  <div style={{ fontFamily: "var(--font-inter)", fontSize: "0.875rem", color: "rgba(255,255,255,0.5)", marginTop: "12px" }}>
-                    Najpogosteje brani članek
-                  </div>
+              {/* Right: cover image */}
+              <div style={{ position: "relative", background: "var(--ocean)", minHeight: "320px", overflow: "hidden" }}>
+                <Image
+                  src={featured.image}
+                  alt={featured.imageAlt}
+                  fill
+                  sizes="(max-width: 900px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
+                <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(11,32,53,0.55) 0%, rgba(11,32,53,0.15) 50%, transparent 100%)" }} />
+                <div style={{ position: "absolute", top: "20px", left: "20px", background: "#C8922A", color: "#fff", padding: "6px 14px", borderRadius: "3px", fontFamily: "var(--font-inter)", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase", zIndex: 2 }}>
+                  Najbrani članek
                 </div>
               </div>
             </div>
@@ -101,6 +106,18 @@ export default function BlogIndex() {
                 <article
                   style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "8px", overflow: "hidden", flex: 1, display: "flex", flexDirection: "column", transition: "box-shadow 0.2s" }}
                 >
+                  {/* Cover image */}
+                  <div style={{ position: "relative", height: "180px", overflow: "hidden", background: "var(--ocean)" }}>
+                    <Image
+                      src={post.image}
+                      alt={post.imageAlt}
+                      fill
+                      sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                      style={{ objectFit: "cover" }}
+                    />
+                    <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(11,32,53,0.35) 0%, transparent 60%)" }} />
+                  </div>
+
                   {/* Category stripe */}
                   <div style={{ height: "4px", background: categoryColors[post.category] ?? "#0B2035" }} />
 

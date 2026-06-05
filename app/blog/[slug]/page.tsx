@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
@@ -25,6 +26,7 @@ export async function generateMetadata({
       description: post.metaDescription,
       type: "article",
       locale: "sl_SI",
+      images: [{ url: post.image, alt: post.imageAlt }],
     },
   };
 }
@@ -90,8 +92,24 @@ export default async function BlogPost({
         </div>
       </section>
 
+      {/* Hero image */}
+      <section style={{ background: "var(--ocean)", padding: "0 24px" }}>
+        <div style={{ maxWidth: "1100px", margin: "0 auto", transform: "translateY(-32px)" }}>
+          <div style={{ position: "relative", width: "100%", aspectRatio: "21 / 9", borderRadius: "8px", overflow: "hidden", boxShadow: "0 12px 48px rgba(0,0,0,0.25)", background: "var(--ocean)" }}>
+            <Image
+              src={post.image}
+              alt={post.imageAlt}
+              fill
+              priority
+              sizes="(max-width: 1100px) 100vw, 1100px"
+              style={{ objectFit: "cover" }}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* Article body */}
-      <section style={{ background: "var(--cream)", padding: "64px 24px 80px" }}>
+      <section style={{ background: "var(--cream)", padding: "32px 24px 80px" }}>
         <div style={{ maxWidth: "760px", margin: "0 auto" }}>
 
           {/* Keywords */}
@@ -152,6 +170,15 @@ export default async function BlogPost({
               {related.map((rp) => (
                 <Link key={rp.slug} href={`/blog/${rp.slug}`} style={{ textDecoration: "none" }}>
                   <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "8px", overflow: "hidden" }}>
+                    <div style={{ position: "relative", height: "140px", background: "var(--ocean)" }}>
+                      <Image
+                        src={rp.image}
+                        alt={rp.imageAlt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        style={{ objectFit: "cover" }}
+                      />
+                    </div>
                     <div style={{ height: "3px", background: categoryColors[rp.category] ?? "#0B2035" }} />
                     <div style={{ padding: "24px" }}>
                       <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.08em", textTransform: "uppercase", color: categoryColors[rp.category] ?? "#0B2035" }}>
