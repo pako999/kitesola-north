@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -12,9 +13,13 @@ export default function Footer() {
           {/* Brand col */}
           <div>
             <div style={{ marginBottom: "20px" }}>
-              <span style={{ fontFamily: "var(--font-sora)", fontWeight: 800, fontSize: "1.25rem", color: "#fff", letterSpacing: "-0.01em", lineHeight: 1.1 }}>
-                Kite Šola <span style={{ color: "#C8922A" }}>North</span>
-              </span>
+              <Image
+                src="https://www.kitesola-north.si/wp-content/uploads/2022/07/kitesola_north.png"
+                alt="Kite Šola North — Kitesurf Šola"
+                width={148}
+                height={44}
+                style={{ objectFit: "contain", filter: "brightness(0) invert(1)", height: "40px", width: "auto" }}
+              />
             </div>
             <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.875rem", color: "rgba(255,255,255,0.45)", lineHeight: 1.7, maxWidth: "260px" }}>
               Profesionalni kiteboarding tečaji na Jadranski obali — od prvega zmaja do samostojne vožnje.
