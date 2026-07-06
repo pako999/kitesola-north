@@ -44,7 +44,7 @@ export const posts: Post[] = [
       },
       {
         heading: "Kite Šola North — vaš partner v Nin-Ljubač",
-        body: "Naša šola deluje v Zadar-Nin-Ljubač že vrsto let. Inštruktorji imajo mednarodne licence, oprema je nova in vzdrževana, pristop pa je prilagojen vsakemu posamezniku. Ponujamo spoznavni tečaj (3h, €190), začetni tečaj (4 dni, €520) in zasebne ure (€100/h). Na voljo so tudi opremljeni apartmaji tik ob šoli.",
+        body: "Naša šola deluje v Zadar-Nin-Ljubač že vrsto let. Inštruktorji imajo mednarodne licence, oprema je nova in vzdrževana, pristop pa je prilagojen vsakemu posamezniku. Ponujamo spoznavni tečaj (3h, €190), začetni tečaj (4 dni, €720) in zasebne ure (€100/h). Na voljo so tudi opremljeni apartmaji tik ob šoli.",
       },
     ],
     cta: "Rezerviraj svoje mesto za sezono 2025 — mesta so omejena.",
@@ -53,7 +53,7 @@ export const posts: Post[] = [
   {
     slug: "kite-tecaj-cena-kaj-je-vkljuceno",
     title: "Koliko stane kite tečaj? Cenik in kaj je vključeno v kiteboarding šolo",
-    metaDescription: "Kite tečaj cena 2025: spoznavni tečaj €190, začetni tečaj €520, zasebne ure €100/h. Kaj je vključeno? Kite Šola North, Zadar-Nin-Ljubač.",
+    metaDescription: "Kite tečaj cena 2025: spoznavni tečaj €190, začetni tečaj €720, zasebne ure €100/h. Kaj je vključeno? Kite Šola North, Zadar-Nin-Ljubač.",
     keywords: ["kite tečaj cena", "kiteboarding tečaj cenik", "koliko stane kiteboarding tečaj", "kite šola cena Hrvaška"],
     category: "Tečaji",
     readMinutes: 5,
@@ -65,7 +65,7 @@ export const posts: Post[] = [
         body: "Spoznavni tečaj je idealen uvod za tiste, ki želijo preizkusiti kiteboarding brez večjih finančnih obveznosti. V treh urah dobite teorijo vetra in varnosti, rokujete z opremo, vadite z manjšim trenerskim zmajem in prvič dvignete pravi zmaj. Vsa oprema je vključena. Ta tečaj je predpogoj za začetni tečaj.",
       },
       {
-        heading: "Začetni tečaj (4 dni, 12 ur) — €520",
+        heading: "Začetni tečaj (4 dni, 12 ur) — €720",
         body: "Naš najpopularnejši program vas v štirih dneh popelje od tal do samostojne vožnje. Vsak dan ~3 ure intenzivnega poučevanja z inštruktorjem neposredno ob vas. Vključuje montažo opreme, body dragging, vstop v vodo, vzpon na desko in vožnjo po vetru. Vse vsebine spoznavnega tečaja so vključene — ni dvojnega plačila.",
       },
       {

@@ -10,7 +10,7 @@ const IMG = {
 
 export const metadata: Metadata = {
   title: "Tečaji & Cene | Kite Šola North",
-  description: "Spoznavni tečaj €190 · Začetni tečaj €520 · Zasebne ure €100/h. Zadar-Nin-Ljubač.",
+  description: "Spoznavni tečaj €190 · Začetni tečaj €720 · Zasebne ure €100/h. Zadar-Nin-Ljubač.",
 };
 
 const courses = [
@@ -39,7 +39,7 @@ const courses = [
     label: "02 — Začetni tečaj",
     name: "Začetni tečaj",
     duration: "4 dni · 12 ur skupaj",
-    price: "€520",
+    price: "€720",
     img: IMG.rider,
     tag: "Najpopularnejši",
     featured: true,
@@ -47,13 +47,13 @@ const courses = [
     description: "Naš celovit program te v 4 dneh popelje od popolnega začetnika do samostojnega deskarja. Vsak dan ~3 ure z inštruktorjem ob tebi v vodi.",
     includes: [
       "Vse vsebine spoznavnega tečaja",
-      "Montaža in priprema opreme",
+      "Sestavljanje opreme",
       "Dviganje in pristajanje na kopnem",
       "Body dragging (vlečenje z zmajem brez deske)",
       "Body dragging z desko v roki",
       "Samostopen vstop v vodo",
       "Vzpon na desko in prvi koraki",
-      "Vožnja po vetru (downwind)",
+      "Vožnja z vetrom (downwind)",
     ],
     note: "Zahteva predhodni spoznavni tečaj ali enakovredno znanje.",
   },

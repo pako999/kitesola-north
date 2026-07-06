@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const courseOptions = [
   "Spoznavni tečaj (3h · €190)",
-  "Začetni tečaj (4 dni/12h · €520)",
+  "Začetni tečaj (4 dni/12h · €720)",
   "Zasebne ure (€100/h)",
   "Nastanitev",
   "Splošno vprašanje",

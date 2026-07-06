@@ -25,7 +25,7 @@ export const metadata: Metadata = {
   keywords: "kiteboarding tečaj, kite šola, kitesurfing Zadar, Nin, Hrvaška",
   openGraph: {
     title: "Kite Šola North | Kiteboarding Zadar",
-    description: "Začnite svojo kite avanturo. Spoznavni tečaj €190 · Začetni tečaj €520.",
+    description: "Začnite svojo kite avanturo. Spoznavni tečaj €190 · Začetni tečaj €720.",
     type: "website",
     locale: "sl_SI",
   },

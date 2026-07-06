@@ -52,7 +52,7 @@ const courses = [
     slug: "zacetni",
     label: "Začetni tečaj",
     duration: "4 dni · 12 ur",
-    price: "€520",
+    price: "€720",
     desc: "Od tal do samostojne vožnje. Naš najpopularnejši program.",
     img: IMG.rider,
     featured: true,
