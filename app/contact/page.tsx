@@ -2,7 +2,9 @@
 
 import { useState } from "react";
 
-const courseOptions = [
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/mlgyazao";
+
+const paketOptions = [
   "Spoznavni tečaj (3h · €190)",
   "Začetni tečaj (4 dni/12h · €720)",
   "Zasebne ure (€100/h)",
@@ -10,22 +12,50 @@ const courseOptions = [
   "Splošno vprašanje",
 ];
 
-const monthOptions = ["Julij 2025", "Avgust 2025", "September 2025", "Drugo"];
+const terminOptions = ["Julij 2026", "Avgust 2026", "September 2026", "Drugo / se dogovorimo"];
 
 export default function ContactPage() {
-  const [form, setForm] = useState({ name: "", email: "", phone: "", course: "", month: "", people: "1", message: "" });
+  const [form, setForm] = useState({
+    ime: "",
+    naslov: "",
+    mesto: "",
+    posta: "",
+    telefon: "",
+    email: "",
+    paket: "",
+    termin: "",
+  });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const set = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
 
-  const submit = async (e: React.FormEvent) => {
+  const submit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1100));
-    setLoading(false);
-    setSubmitted(true);
+    setError("");
+    try {
+      const res = await fetch(FORMSPREE_ENDPOINT, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: new FormData(e.currentTarget),
+      });
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        const data = await res.json().catch(() => null);
+        setError(
+          data?.errors?.map((x: { message: string }) => x.message).join(", ") ||
+            "Prišlo je do napake. Poskusite znova ali nas kontaktirajte na WhatsApp."
+        );
+      }
+    } catch {
+      setError("Napaka pri povezavi. Poskusite znova ali nas kontaktirajte na WhatsApp.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   /* ── Success screen ── */
@@ -42,13 +72,13 @@ export default function ContactPage() {
             Prijava prejeta!
           </h1>
           <p style={{ fontFamily: "var(--font-inter)", fontSize: "1.0625rem", color: "var(--muted)", lineHeight: 1.7, marginBottom: "40px" }}>
-            Hvala, <strong style={{ color: "var(--ink)" }}>{form.name}</strong>. Kontaktirali vas bomo v roku 24 ur na WhatsApp ali e-mail.
+            Hvala, <strong style={{ color: "var(--ink)" }}>{form.ime}</strong>. Kontaktirali vas bomo v roku 24 ur na WhatsApp ali e-mail.
           </p>
           <div style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "8px", padding: "28px", textAlign: "left", marginBottom: "36px" }}>
             {[
-              { k: "Tečaj", v: form.course },
-              { k: "Mesec", v: form.month },
-              { k: "Osebe", v: form.people },
+              { k: "Paket", v: form.paket },
+              { k: "Željeni termin", v: form.termin },
+              { k: "Kraj", v: [form.mesto, form.posta].filter(Boolean).join(", ") },
             ].map((r) => (
               <div key={r.k} style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", borderBottom: "1px solid var(--border)" }}>
                 <span style={{ fontFamily: "var(--font-inter)", fontSize: "0.875rem", color: "var(--muted)" }}>{r.k}</span>
@@ -85,63 +115,75 @@ export default function ContactPage() {
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 380px", gap: "48px", alignItems: "start" }} className="contact-grid">
 
           {/* ── Form card ── */}
-          <form onSubmit={submit} style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "8px", padding: "48px" }}>
+          <form onSubmit={submit} action={FORMSPREE_ENDPOINT} method="POST" style={{ background: "#fff", border: "1px solid var(--border)", borderRadius: "8px", padding: "48px" }}>
             <h2 style={{ fontFamily: "var(--font-sora)", fontWeight: 700, fontSize: "1.5rem", color: "var(--ocean)", marginBottom: "36px", letterSpacing: "-0.01em" }}>
               Prijavnica
             </h2>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "24px" }}>
-              {/* Name */}
+              {/* Ime in priimek */}
               <div>
                 <label style={lbl}>Ime in priimek *</label>
-                <input name="name" required value={form.name} onChange={set} placeholder="Janez Novak" style={inp} />
+                <input name="ime" required value={form.ime} onChange={set} placeholder="Janez Novak" style={inp} />
               </div>
 
-              {/* Email + Phone */}
+              {/* Naslov */}
+              <div>
+                <label style={lbl}>Naslov *</label>
+                <input name="naslov" required value={form.naslov} onChange={set} placeholder="Ulica in hišna številka" style={inp} />
+              </div>
+
+              {/* Mesto + Poštna št. */}
+              <div style={{ display: "grid", gridTemplateColumns: "1fr 160px", gap: "16px" }} className="two-col">
+                <div>
+                  <label style={lbl}>Mesto *</label>
+                  <input name="mesto" required value={form.mesto} onChange={set} placeholder="Ljubljana" style={inp} />
+                </div>
+                <div>
+                  <label style={lbl}>Poštna št. *</label>
+                  <input name="posta" required value={form.posta} onChange={set} placeholder="1000" style={inp} />
+                </div>
+              </div>
+
+              {/* Telefon + Email */}
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="two-col">
+                <div>
+                  <label style={lbl}>Telefon / WhatsApp *</label>
+                  <input name="telefon" type="tel" required value={form.telefon} onChange={set} placeholder="+386 41 000 000" style={inp} />
+                </div>
                 <div>
                   <label style={lbl}>E-mail *</label>
                   <input name="email" type="email" required value={form.email} onChange={set} placeholder="janez@email.com" style={inp} />
                 </div>
-                <div>
-                  <label style={lbl}>Telefon / WhatsApp *</label>
-                  <input name="phone" type="tel" required value={form.phone} onChange={set} placeholder="+386 41 000 000" style={inp} />
-                </div>
               </div>
 
-              {/* Course */}
+              {/* Paket */}
               <div>
-                <label style={lbl}>Tečaj *</label>
-                <select name="course" required value={form.course} onChange={set} style={{ ...inp, appearance: "none" as const }}>
-                  <option value="" disabled>Izberi tečaj…</option>
-                  {courseOptions.map((o) => <option key={o} value={o}>{o}</option>)}
+                <label style={lbl}>Izberi paket *</label>
+                <select name="paket" required value={form.paket} onChange={set} style={{ ...inp, appearance: "none" as const }}>
+                  <option value="" disabled>Izberi paket…</option>
+                  {paketOptions.map((o) => <option key={o} value={o}>{o}</option>)}
                 </select>
               </div>
 
-              {/* Month + People */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }} className="two-col">
-                <div>
-                  <label style={lbl}>Mesec *</label>
-                  <select name="month" required value={form.month} onChange={set} style={{ ...inp, appearance: "none" as const }}>
-                    <option value="" disabled>Izberi mesec…</option>
-                    {monthOptions.map((o) => <option key={o} value={o}>{o}</option>)}
-                  </select>
-                </div>
-                <div>
-                  <label style={lbl}>Število oseb</label>
-                  <select name="people" value={form.people} onChange={set} style={{ ...inp, appearance: "none" as const }}>
-                    {["1","2","3","4","5+"].map((n) => (
-                      <option key={n} value={n}>{n} {n === "1" ? "oseba" : "osebe/oseb"}</option>
-                    ))}
-                  </select>
-                </div>
+              {/* Željeni termin */}
+              <div>
+                <label style={lbl}>Željeni termin *</label>
+                <select name="termin" required value={form.termin} onChange={set} style={{ ...inp, appearance: "none" as const }}>
+                  <option value="" disabled>Izberi termin…</option>
+                  {terminOptions.map((o) => <option key={o} value={o}>{o}</option>)}
+                </select>
               </div>
 
-              {/* Message */}
-              <div>
-                <label style={lbl}>Sporočilo (neobvezno)</label>
-                <textarea name="message" value={form.message} onChange={set} rows={4} placeholder="Vprašanja, posebne zahteve, predhodne izkušnje…" style={{ ...inp, resize: "none" as const }} />
-              </div>
+              {/* Subject line for the email Formspree sends */}
+              <input type="hidden" name="_subject" value="Nova prijava — Kite Šola North" />
+
+              {/* Error */}
+              {error && (
+                <p style={{ fontFamily: "var(--font-inter)", fontSize: "0.875rem", color: "#B00020", background: "#FDECEE", border: "1px solid #F5C2C7", borderRadius: "4px", padding: "12px 16px" }}>
+                  {error}
+                </p>
+              )}
 
               {/* Submit */}
               <button
@@ -193,7 +235,7 @@ export default function ContactPage() {
                 Sezonske informacije
               </p>
               {[
-                { k: "Sezona", v: "Julij – Avgust 2025" },
+                { k: "Sezona", v: "Julij – Avgust 2026" },
                 { k: "Odgovor", v: "Do 24 ur" },
                 { k: "Rezervacija", v: "Vsaj 7 dni prej" },
                 { k: "Odpoved", v: "Brezplačno do 48h" },
