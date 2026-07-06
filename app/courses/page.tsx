@@ -3,9 +3,9 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 const IMG = {
-  bay:   "https://www.kitesola-north.si/wp-content/uploads/2022/07/13937767_10154288279987211_6400065277025921007_o.jpeg",
-  rider: "https://www.kitesola-north.si/wp-content/uploads/2022/07/456732_10150625772302211_1014554783_o-1024x681.jpeg",
-  kite:  "https://www.kitesola-north.si/wp-content/uploads/2022/07/414444_10150772783877211_2131148202_o-1024x577.jpeg",
+  bay:   "https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?w=1600&q=80",
+  rider: "https://images.unsplash.com/photo-1530053969600-caed2596d242?w=1400&q=80",
+  kite:  "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=1400&q=80",
 };
 
 export const metadata: Metadata = {
