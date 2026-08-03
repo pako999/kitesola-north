@@ -74,8 +74,10 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href="https://wa.me/38641580250"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               fontFamily: "var(--font-inter)",
               fontSize: "0.875rem",
@@ -90,7 +92,7 @@ export default function Navbar() {
             }}
           >
             Prijavi se
-          </Link>
+          </a>
         </nav>
 
         {/* Mobile hamburger */}
@@ -129,13 +131,15 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/contact"
+          <a
+            href="https://wa.me/38641580250"
+            target="_blank"
+            rel="noopener noreferrer"
             onClick={() => setMenuOpen(false)}
             style={{ display: "block", marginTop: "20px", padding: "14px", background: "#C8922A", color: "#fff", fontFamily: "var(--font-inter)", fontWeight: 600, fontSize: "0.9375rem", textAlign: "center", textDecoration: "none", borderRadius: "4px" }}
           >
             Prijavi se →
-          </Link>
+          </a>
         </div>
       )}
 
